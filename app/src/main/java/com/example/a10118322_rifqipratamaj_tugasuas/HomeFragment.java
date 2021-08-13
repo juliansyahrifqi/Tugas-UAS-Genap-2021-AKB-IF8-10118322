@@ -1,10 +1,10 @@
 package com.example.a10118322_rifqipratamaj_tugasuas;
 
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,7 +20,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.zip.Inflater;
 
 public class HomeFragment extends Fragment {
 
@@ -34,7 +33,7 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        rv_pariwisata = (RecyclerView) view.findViewById(R.id.rv_pariwisata);
+        rv_pariwisata = view.findViewById(R.id.rv_pariwisata);
 
         read();
 
@@ -47,8 +46,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-
-        read();
+        
     }
 
     private void read() {
@@ -58,19 +56,18 @@ public class HomeFragment extends Fragment {
 
         System.out.println("test: " + database);
 
-        pariwisataAdapter = new PariwisataAdapter(pariwisataList);
+        pariwisataAdapter = new PariwisataAdapter(pariwisataList, this.getContext());
         rv_pariwisata.setAdapter(pariwisataAdapter);
 
-        database.addValueEventListener(new ValueEventListener() {
+        database.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull  DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     try {
                         Pariwisata pariwisata = dataSnapshot.getValue(Pariwisata.class);
                         pariwisataList.add(pariwisata);
-                        System.out.println(pariwisata);
                     } catch(Exception error) {
-                        System.out.println("error" + error);
+                        Toast.makeText(getActivity(), "Error: " + error, Toast.LENGTH_SHORT).show();
                     }
                 }
                 pariwisataAdapter.notifyDataSetChanged();

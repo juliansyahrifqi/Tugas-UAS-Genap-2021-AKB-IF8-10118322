@@ -1,26 +1,35 @@
 package com.example.a10118322_rifqipratamaj_tugasuas;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
 
 import org.w3c.dom.Text;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 public class PariwisataAdapter extends RecyclerView.Adapter {
 
     private List<Pariwisata> pariwisataList;
+    Context mContext;
 
-    public PariwisataAdapter(List<Pariwisata> pariwisataList) {
+    public PariwisataAdapter(List<Pariwisata> pariwisataList, Context context) {
         this.pariwisataList = pariwisataList;
+        mContext = context;
     }
 
     @NonNull
@@ -34,8 +43,9 @@ public class PariwisataAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         Pariwisata pariwisata = pariwisataList.get(position);
-
         ((PariwisataViewHolder) holder).bindView(pariwisata);
+
+        Glide.with(mContext).load(pariwisata.getImageUrl()).into(((PariwisataViewHolder) holder).iv_image);
     }
 
     @Override
@@ -45,6 +55,7 @@ public class PariwisataAdapter extends RecyclerView.Adapter {
 
     private class PariwisataViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
+        private ImageView iv_image;
         private TextView tv_nama;
         private TextView tv_alamat;
         private TextView tv_no_tlp;
@@ -53,6 +64,7 @@ public class PariwisataAdapter extends RecyclerView.Adapter {
         public PariwisataViewHolder(View itemView) {
             super(itemView);
 
+            iv_image = (ImageView) itemView.findViewById(R.id.iv_image);
             tv_nama = (TextView) itemView.findViewById(R.id.tv_nama);
             tv_alamat = (TextView) itemView.findViewById(R.id.tv_alamat);
             tv_no_tlp = (TextView) itemView.findViewById(R.id.tv_no_tlp);
