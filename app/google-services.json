@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "77752153653",
+    "project_id": "akb-travelahka",
+    "storage_bucket": "akb-travelahka.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:77752153653:android:96281c3d737ff46a10237c",
+        "android_client_info": {
+          "package_name": "com.example.a10118322_rifqipratamaj_tugasuas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "77752153653-9obakn0flh60kqo0l6r96dqqbldbf6lr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUbF7ijMdrXwOnvTNRQCib_FstbusQfic"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "77752153653-9obakn0flh60kqo0l6r96dqqbldbf6lr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
