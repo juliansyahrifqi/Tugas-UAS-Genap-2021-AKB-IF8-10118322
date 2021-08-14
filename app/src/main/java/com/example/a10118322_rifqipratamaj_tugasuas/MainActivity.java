@@ -36,8 +36,8 @@ public class    MainActivity extends AppCompatActivity {
                         case R.id.navigation_home:
                             selectedFragment = new HomeFragment();
                             break;
-                        case R.id.navigation_input:
-                            selectedFragment = new InputFragment();
+                        case R.id.navigation_explore:
+                            selectedFragment = new MapsFragment();
                             break;
                         case R.id.navigation_profile:
                             selectedFragment = new ProfileFragment();

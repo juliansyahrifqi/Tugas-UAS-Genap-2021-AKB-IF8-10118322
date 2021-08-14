@@ -6,4 +6,5 @@
     <string name="kelas">IF-8</string>
     <string name="email_mhs">rifqi.10118322@mahasiswa.unikom.ac.id</string>
     <string name="email_pribadi">rifqipratama9@gmail.com</string>
+    <string name="mapbox_access_token">sk.eyJ1IjoicmlmcWlwcmF0YW1haiIsImEiOiJja3NiOGpucGwwNGV2MzBvZGZiOWNvZGt5In0.CtoA7U-4Rs0WSbwqJjEvAQ</string>
 </resources>
