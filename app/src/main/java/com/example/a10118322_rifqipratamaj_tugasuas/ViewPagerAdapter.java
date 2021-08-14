@@ -1,6 +1,10 @@
+// NIM : 10118322
+// Nama: Rifqi Pratama Juliansyah
+// Kelas: IF-8
+// Tanggal Pengerjaan: 9 Agustus 2021
+
 package com.example.a10118322_rifqipratamaj_tugasuas;
 
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

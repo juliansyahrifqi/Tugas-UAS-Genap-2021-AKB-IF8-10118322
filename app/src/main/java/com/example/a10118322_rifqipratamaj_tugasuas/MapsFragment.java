@@ -1,3 +1,8 @@
+// NIM : 10118322
+// Nama: Rifqi Pratama Juliansyah
+// Kelas: IF-8
+// Tanggal Pengerjaan: 13 Agustus 2021
+
 package com.example.a10118322_rifqipratamaj_tugasuas;
 
 import android.os.Bundle;
@@ -75,47 +80,54 @@ public class MapsFragment extends Fragment implements  OnMapReadyCallback, Permi
         // Initialize the MarkerViewManager
         MarkerViewManager markerViewManager = new MarkerViewManager(mapView, map);
 
-        // Use an XML layout to create a View object
-        View customView = LayoutInflater.from(getActivity()).inflate(
-                R.layout.marker_view_bubble, null);
-        customView.setLayoutParams(new FrameLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT));
+        if(getActivity() != null) {
+            // Use an XML layout to create a View object
+            View customView = LayoutInflater.from(getActivity()).inflate(
+                    R.layout.marker_view_bubble, null);
+            customView.setLayoutParams(new FrameLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT));
 
-        // Set the View's TextViews with content
-        TextView titleTextView = customView.findViewById(R.id.marker_window_title);
-        titleTextView.setText(judul);
+            // Set the View's TextViews with content
+            TextView titleTextView = customView.findViewById(R.id.marker_window_title);
+            titleTextView.setText(judul);
 
-        TextView snippetTextView = customView.findViewById(R.id.marker_window_snippet);
-        snippetTextView.setText(keterangan);
+            TextView snippetTextView = customView.findViewById(R.id.marker_window_snippet);
+            snippetTextView.setText(keterangan);
 
-        // Use the View to create a MarkerView which will eventually be given to
-        // the plugin's MarkerViewManager class
-        MarkerView markerView = new MarkerView(new LatLng(latitude, longitude), customView);
-        markerViewManager.addMarker(markerView);
+            // Use the View to create a MarkerView which will eventually be given to
+            // the plugin's MarkerViewManager class
+            MarkerView markerView = new MarkerView(new LatLng(latitude, longitude), customView);
+            markerViewManager.addMarker(markerView);
+        }
     }
 
     @SuppressWarnings( {"MissingPermission"})
     private void enableLocationComponent(@NonNull Style loadedMapStyle) {
-        // Check if permissions are enabled and if not request
-        if (PermissionsManager.areLocationPermissionsGranted(this.getContext())) {
-            // Get an instance of the component
-            LocationComponent locationComponent = map.getLocationComponent();
+        try {
+            // Check if permissions are enabled and if not request
+            if (PermissionsManager.areLocationPermissionsGranted(this.getContext())) {
+                // Get an instance of the component
+                LocationComponent locationComponent = map.getLocationComponent();
 
-            // Activate with options
-            locationComponent.activateLocationComponent(
-                    LocationComponentActivationOptions.builder(this.getContext(), loadedMapStyle).build());
+                // Activate with options
+                locationComponent.activateLocationComponent(
+                        LocationComponentActivationOptions.builder(this.getContext(), loadedMapStyle).build());
 
-            // Enable to make component visible
-            locationComponent.setLocationComponentEnabled(true);
+                // Enable to make component visible
+                locationComponent.setLocationComponentEnabled(true);
 
-            // Set the component's camera mode
-            locationComponent.setCameraMode(CameraMode.TRACKING);
+                // Set the component's camera mode
+                locationComponent.setCameraMode(CameraMode.TRACKING);
 
-            // Set the component's render mode
-            locationComponent.setRenderMode(RenderMode.COMPASS);
-        } else {
-            permissionsManager = new PermissionsManager(this);
-            permissionsManager.requestLocationPermissions(getActivity());
+                // Set the component's render mode
+                locationComponent.setRenderMode(RenderMode.COMPASS);
+            } else {
+                permissionsManager = new PermissionsManager(this);
+                permissionsManager.requestLocationPermissions(getActivity());
+            }
+        }catch(Exception e) {
+            Toast.makeText(this.getContext(), "Error: " + e, Toast.LENGTH_SHORT).show();
         }
+
     }
 
 
@@ -146,5 +158,29 @@ public class MapsFragment extends Fragment implements  OnMapReadyCallback, Permi
     @Override
     public void onMapReady(@NonNull MapboxMap mapboxMap) {
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mapView.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mapView.onPause();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mapView.onStop();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        mapView.onDestroy();
     }
 }

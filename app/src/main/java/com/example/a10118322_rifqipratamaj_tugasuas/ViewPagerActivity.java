@@ -1,3 +1,8 @@
+// NIM : 10118322
+// Nama: Rifqi Pratama Juliansyah
+// Kelas: IF-8
+// Tanggal Pengerjaan: 9 Agustus 2021
+
 package com.example.a10118322_rifqipratamaj_tugasuas;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -64,18 +69,18 @@ public class ViewPagerActivity extends AppCompatActivity {
 
         ViewPagerItem firstSlider = new ViewPagerItem();
         firstSlider.setTitle("SELAMAT DATANG");
-        firstSlider.setDescription("Ini adalah aplikasi Catatan Harian yang dibuat oleh 10118322 - Rifqi Pratama Juliansyah - IF8");
-        firstSlider.setImage(R.drawable.ic_viewpager_awal);
+        firstSlider.setDescription("Travelahka adalah aplikasi yang dibuat oleh 10118322 - Rifqi Pratama Juliansyah - IF8");
+        firstSlider.setImage(R.drawable.ic_viewpager_1);
 
         ViewPagerItem secondSlider = new ViewPagerItem();
-        secondSlider.setTitle("TAMBAH DAN UBAH CATATAN");
-        secondSlider.setDescription("Di aplikasi ini, kalian bisa melakukan penambahan catatan harian dan juga mengedit catatan harian kalian");
-        secondSlider.setImage(R.drawable.ic_viewpager_dua);
+        secondSlider.setTitle("DAFTAR TEMPAT WISATA");
+        secondSlider.setDescription("Di aplikasi ini, kalian bisa melihat daftar tempat wisata apa saja yang ada di kota Bandung");
+        secondSlider.setImage(R.drawable.ic_viewpager_2);
 
         ViewPagerItem thirdSlider = new ViewPagerItem();
-        thirdSlider.setTitle("HAPUS CATATAN");
-        thirdSlider.setDescription("Selain bisa menambah dan mengubah catatan, di aplikasi ini juga kalian bisa menghapus catatan yang sudah tidak dibutuhkan");
-        thirdSlider.setImage(R.drawable.ic_viewpager_tiga);
+        thirdSlider.setTitle("LIHAT DI MAPS");
+        thirdSlider.setDescription("Selain lewat daftar tempat, kalian juga bisa melihat daftar tempat wisata melalui Maps yang ada pada aplikasi ini");
+        thirdSlider.setImage(R.drawable.ic_viewpager_3);
 
         viewPagerItems.add(firstSlider);
         viewPagerItems.add(secondSlider);
@@ -122,7 +127,7 @@ public class ViewPagerActivity extends AppCompatActivity {
         }
 
         if(index == viewPagerAdapter.getItemCount() - 1) {
-            buttonGetStarted.setText("GET STARTED");
+            buttonGetStarted.setText("AYO LIBURAN");
         } else {
             buttonGetStarted.setText("Next");
         }

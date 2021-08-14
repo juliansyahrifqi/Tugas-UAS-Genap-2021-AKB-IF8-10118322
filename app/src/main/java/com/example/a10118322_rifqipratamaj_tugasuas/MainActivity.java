@@ -1,18 +1,21 @@
+// NIM : 10118322
+// Nama: Rifqi Pratama Juliansyah
+// Kelas: IF-8
+// Tanggal Pengerjaan: 9 Agustus 2021
+
 package com.example.a10118322_rifqipratamaj_tugasuas;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class    MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
-    private RecyclerView rv_catatan;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -15,13 +15,13 @@
         android:layout_centerVertical="true"
         android:backgroundTint="@color/black"
         android:scaleType="center"
-        android:src="@drawable/ic_halaman_utama" />
+        android:src="@drawable/ic_travelahka" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/splash_image"
-        android:text="Catatan Harianku"
+        android:text="TRAVELAHKA"
         android:textSize="35sp"
         android:gravity="center_horizontal"
         android:textColor="@color/black"
