@@ -54,8 +54,6 @@ public class HomeFragment extends Fragment {
 
         database = FirebaseDatabase.getInstance("https://akb-travelahka-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Pariwisata");
 
-        System.out.println("test: " + database);
-
         pariwisataAdapter = new PariwisataAdapter(pariwisataList, this.getContext());
         rv_pariwisata.setAdapter(pariwisataAdapter);
 

@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -13,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import com.mapbox.android.core.permissions.PermissionsListener;
 import com.mapbox.android.core.permissions.PermissionsManager;
 import com.mapbox.mapboxsdk.Mapbox;
+import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapbox.mapboxsdk.location.LocationComponent;
 import com.mapbox.mapboxsdk.location.LocationComponentActivationOptions;
 import com.mapbox.mapboxsdk.location.modes.CameraMode;
@@ -21,8 +24,12 @@ import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
 import com.mapbox.mapboxsdk.maps.Style;
+import com.mapbox.mapboxsdk.plugins.markerview.MarkerView;
+import com.mapbox.mapboxsdk.plugins.markerview.MarkerViewManager;
 
 import java.util.List;
+
+import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 
 public class MapsFragment extends Fragment implements  OnMapReadyCallback, PermissionsListener {
 
@@ -45,9 +52,16 @@ public class MapsFragment extends Fragment implements  OnMapReadyCallback, Permi
 
                 MapsFragment.this.map = mapboxMap;
 
+                // Enable style maps
                 mapboxMap.setStyle(Style.MAPBOX_STREETS, new Style.OnStyleLoaded() {
                     @Override
                     public void onStyleLoaded(@NonNull Style style) {
+                        setMarker("Batu Kuda", "Cibiru Wetan, Cileunyi, Bandung, Jawa Barat 40625", -6.893357555232264, 107.74492109687638);
+                        setMarker("Kebun Kina", "Jl. Bukit Tunggul, Cipanjalu, Kec. Cilengkrang, Bandung", -6.8370178640237524, 107.73035240062819);
+                        setMarker("Tebing Keraton", "Ciburial, Kec. Cimenyan, Kabupaten Bandung Barat", -6.833710892131754, 107.6637346053155);
+                        setMarker("The Lodge Maribaya", "Jalan Maribaya No. 149/252, Lembang", -6.829311011004738, 107.68749765411755);
+
+                        // Enable user location marker
                         enableLocationComponent(style);
                     }
                 });
@@ -55,6 +69,28 @@ public class MapsFragment extends Fragment implements  OnMapReadyCallback, Permi
         });
 
         return view;
+    }
+
+    private void setMarker(String judul, String keterangan, Double latitude, Double longitude) {
+        // Initialize the MarkerViewManager
+        MarkerViewManager markerViewManager = new MarkerViewManager(mapView, map);
+
+        // Use an XML layout to create a View object
+        View customView = LayoutInflater.from(getActivity()).inflate(
+                R.layout.marker_view_bubble, null);
+        customView.setLayoutParams(new FrameLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT));
+
+        // Set the View's TextViews with content
+        TextView titleTextView = customView.findViewById(R.id.marker_window_title);
+        titleTextView.setText(judul);
+
+        TextView snippetTextView = customView.findViewById(R.id.marker_window_snippet);
+        snippetTextView.setText(keterangan);
+
+        // Use the View to create a MarkerView which will eventually be given to
+        // the plugin's MarkerViewManager class
+        MarkerView markerView = new MarkerView(new LatLng(latitude, longitude), customView);
+        markerViewManager.addMarker(markerView);
     }
 
     @SuppressWarnings( {"MissingPermission"})
@@ -98,7 +134,7 @@ public class MapsFragment extends Fragment implements  OnMapReadyCallback, Permi
                 }
             });
         } else {
-            System.out.println("test");
+            Toast.makeText(this.getContext(), "Error", Toast.LENGTH_SHORT);
         }
     }
 
